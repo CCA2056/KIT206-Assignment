@@ -73,6 +73,10 @@ namespace RAP
             return day;
         }
 
+        public int PublicationCount()
+        {
+            return Publication.Count;
+        }
 
     }
 }

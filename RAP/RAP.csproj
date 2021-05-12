@@ -43,8 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Researcher.cs" />
-    <Compile Include="Publication.cs" />
+    <Compile Include="Entity\Position.cs" />
+    <Compile Include="Entity\Researcher.cs" />
+    <Compile Include="Entity\Publication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
