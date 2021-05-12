@@ -19,14 +19,13 @@ namespace RAP
         public string Title { get; set; }
         public string School { get; set; }
         public string Campus { get; set; }
-        public string Email { get; set; }
+        public string Email { get; set; }       
         public string Photo { get; set; }
 
-        public Position GetCurrentJob()
+        public Position GetCurrentJob(List<Position> pos)
         {
-            Position CurrentJob;
-            CurrentJob = Position.First();
-            foreach (Position Job in Position)
+            Position CurrentJob = pos.First();
+            foreach (Position Job in pos)
             {
                 if (CurrentJob.StartDate < Job.StartDate)
                 {
@@ -37,21 +36,21 @@ namespace RAP
 
         }
 
-        public string CurrentJobTitle()
+        public string CurrentJobTitle(List<Position> pos)
         {
-            return GetCurrentJob().Title;
+            return GetCurrentJob(pos).Title;
         }
 
-        public DateTime CurrentJobStartDate()
+        public DateTime CurrentJobStartDate(List<Position> pos)
         {
-            return GetCurrentJob().StartDate;
+            return GetCurrentJob(pos).StartDate;
         }
 
-        public Position GetEarliestJob()
+        public Position GetEarliestJob(List<Position> pos)
         {
             Position EariliestJob;
-            EariliestJob = Position.First();
-            foreach (Position Job in Position)
+            EariliestJob = pos.First();
+            foreach (Position Job in pos)
             {
                 if (EariliestJob.StartDate > Job.StartDate)
                 {
@@ -62,20 +61,22 @@ namespace RAP
 
         }
 
-        public DateTime EarliestStart()
+        public DateTime EarliestStart(List<Position> pos)
         {
-            return GetEarliestJob().StartDate;
+            return GetEarliestJob(pos).StartDate;
         }
 
-        public float Tenure()
+        //Need to convert TimeSpan to float
+        public float Tenure(List<Position> pos)
         {
-            float day = ((DateTime.Today.Day) - (EarliestStart()).Day);
-            return day;
+            TimeSpan ts = ((DateTime.Now).Subtract(EarliestStart(pos)));
+            double day = ts.TotalDays;
+            return (float)day;
         }
 
-        public int PublicationCount()
+        public int PublicationCount(List<Publication> pub)
         {
-            return Publication.Count;
+            return pub.Count;
         }
 
     }

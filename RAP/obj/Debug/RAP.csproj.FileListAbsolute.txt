@@ -4,3 +4,4 @@ C:\Users\USER\Desktop\RAP\RAP\bin\Debug\RAP.exe
 C:\Users\USER\Desktop\RAP\RAP\bin\Debug\RAP.pdb
 C:\Users\USER\Desktop\RAP\RAP\obj\Debug\RAP.exe
 C:\Users\USER\Desktop\RAP\RAP\obj\Debug\RAP.pdb
+C:\Users\USER\Desktop\RAP\RAP\obj\Debug\RAP.csprojAssemblyReference.cache

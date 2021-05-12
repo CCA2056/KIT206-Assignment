@@ -38,6 +38,11 @@ namespace RAP
             }
         }
 
+        public override string ToString()
+        {
+            return "Level" + "\t" + Level + "\t" + "StartDate" + "\t" + StartDate + "\t" + "EndDate" + "\t" + EndDate + "\t" + "Title" + "\t" + Title;
+        }
+
         public string Ttile (string Ttile)
         {
             return Ttile.ToString();
