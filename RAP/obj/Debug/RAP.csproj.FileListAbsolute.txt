@@ -1,0 +1,6 @@
+C:\Users\USER\Desktop\RAP\RAP\obj\Debug\RAP.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\RAP\RAP\bin\Debug\RAP.exe.config
+C:\Users\USER\Desktop\RAP\RAP\bin\Debug\RAP.exe
+C:\Users\USER\Desktop\RAP\RAP\bin\Debug\RAP.pdb
+C:\Users\USER\Desktop\RAP\RAP\obj\Debug\RAP.exe
+C:\Users\USER\Desktop\RAP\RAP\obj\Debug\RAP.pdb

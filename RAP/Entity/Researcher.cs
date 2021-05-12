@@ -37,10 +37,10 @@ namespace RAP
 
         }
 
-        /*public string CurrentJobTitle()
+        public string CurrentJobTitle()
         {
-            return GetCurrentJob().Ttile;
-        }*/
+            return GetCurrentJob().Title;
+        }
 
         public DateTime CurrentJobStartDate()
         {
@@ -53,7 +53,7 @@ namespace RAP
             EariliestJob = Position.First();
             foreach (Position Job in Position)
             {
-                if (EariliestJob.StartDate < Job.StartDate)
+                if (EariliestJob.StartDate > Job.StartDate)
                 {
                     EariliestJob = Job;
                 }

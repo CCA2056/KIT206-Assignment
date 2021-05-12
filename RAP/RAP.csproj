@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\Student.cs" />
+    <Compile Include="Entity\Staff.cs" />
     <Compile Include="Entity\Position.cs" />
     <Compile Include="Entity\Researcher.cs" />
     <Compile Include="Entity\Publication.cs" />
