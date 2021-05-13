@@ -23,9 +23,5 @@ namespace RAP
             int duration = today - pub.Year;
             return duration;
         }
-
-        
-
-        
     }
 }

@@ -9,6 +9,7 @@ namespace RAP
     public enum EmploymentLevel { Student, A, B, C, D, E}
     class Position
     {
+        public int id { get; set; }
         public EmploymentLevel Level { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

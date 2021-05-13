@@ -14,13 +14,12 @@ namespace RAP
         public string GivenName { get; set; }
         public string FamilyName { get; set; }
         public string Unit { get; set; }
-        public string Level { get; set; }
-
         public string Title { get; set; }
         public string School { get; set; }
         public string Campus { get; set; }
         public string Email { get; set; }       
         public string Photo { get; set; }
+        public EmploymentLevel Level { get; set; }
 
         public Position GetCurrentJob(List<Position> pos)
         {
@@ -78,6 +77,9 @@ namespace RAP
         {
             return pub.Count;
         }
-
+        public override string ToString()
+        {
+            return GivenName + " " + FamilyName + " " + Title;
+        }
     }
 }
