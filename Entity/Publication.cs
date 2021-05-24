@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RAP.Entity
+namespace RAP
 {
     public enum PublicationType {Conference, Journal, Other };
-    public class Publication
+    class Publication
     {
         public string DOI { get; set; }
         public string Title { get; set; }
@@ -16,18 +16,16 @@ namespace RAP.Entity
         public DateTime Available { get; set; }
         public PublicationType Type { get; set; } 
         public string Cite_as { get; set; }
-        public int Age { get { return getAge(); } set { Age = Age; } }
 
-        public int getAge()
+        public int Age(Publication pub)
         {
             int today = DateTime.Today.Year;
-            int duration = today - Year;
+            int duration = today - pub.Year;
             return duration;
         }
 
-        public override string ToString()
-        {
-            return "<" + Title + "> by: " + Authors;
-        }
+        
+
+        
     }
 }
