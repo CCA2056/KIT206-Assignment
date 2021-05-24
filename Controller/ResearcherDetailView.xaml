@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="RAP.ResearcherDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RAP"
+             mc:Ignorable="d" d:DesignWidth="450" Height="600">
+    <Grid>
+        <StackPanel x:Name="researcherDetailPanel" HorizontalAlignment="Left" Height="550" VerticalAlignment="Top" Width="450">
+            
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Name:"></Label>
+                <Label Content="{Binding Path=GivenName}"></Label>
+                <Label Content="{Binding Path=FamilyName}"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Title:"></Label>
+                <Label Content="{Binding Path=Title}"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Unit:"></Label>
+                <Label Content="{Binding Path=Unit}"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Campus:"></Label>
+                <Label Content="{Binding Path=Campus}"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Email:"></Label>
+                <Label Content="{Binding Path=Email}"></Label>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Current Job:"></Label>
+                <Label Content="{Binding Path=GetCurrentJob()}"></Label>
+            </StackPanel>
+
+            
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Commenced with institution:"></Label>
+                <Label Content=""></Label>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Commenced current position:"></Label>
+                <Label Content=""></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <Label Content="Previous position:"></Label>
+                <TextBox Height="23" TextWrapping="Wrap" Text="Just For Test"/>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Tenure:"></Label>
+                <Label Content=""></Label>
+                <Label Content="Publication:"></Label>
+                <Label Content=""></Label>
+                <Button Content="Cumulative Count" Width="Auto"/>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="3-year average:"></Label>
+                <Label Content=""></Label>
+                <Label Content="Performance:"></Label>
+                <Label Content=""></Label>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Supervisions:"></Label>
+                <Label Content=""></Label>
+                <Button Content="Show Names" Width="Auto"/>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Degree:"></Label>
+                <Label Content=""></Label>
+                <Label Content="Supervisor:"></Label>
+                <Label Content=""></Label>
+            </StackPanel>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

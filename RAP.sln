@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAP", "RAP\RAP.csproj", "{17426315-6AC8-491B-8F28-C7B269164541}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAP", "RAP.csproj", "{97394792-CA80-4CEA-8DA9-71C4B5CC6DC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{17426315-6AC8-491B-8F28-C7B269164541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17426315-6AC8-491B-8F28-C7B269164541}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17426315-6AC8-491B-8F28-C7B269164541}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17426315-6AC8-491B-8F28-C7B269164541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97394792-CA80-4CEA-8DA9-71C4B5CC6DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97394792-CA80-4CEA-8DA9-71C4B5CC6DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97394792-CA80-4CEA-8DA9-71C4B5CC6DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97394792-CA80-4CEA-8DA9-71C4B5CC6DC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0341ADBE-109C-4492-8E4E-0FE105F72B77}
+		SolutionGuid = {5E5D8CE2-6B0C-42E9-BFEE-8795C46BF078}
 	EndGlobalSection
 EndGlobal
