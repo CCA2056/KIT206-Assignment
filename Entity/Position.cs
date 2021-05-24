@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RAP
+namespace RAP.Entity
 {
-    public enum EmploymentLevel { Student, A, B, C, D, E}
-    class Position
+    public enum EmploymentLevel { All, Student, A, B, C, D, E}
+    public class Position
     {
+        public int id { get; set; }
         public EmploymentLevel Level { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Title { get; set; }
+        public string Title { get { return ToTitle(Level); } set { Title = Title; } }
 
+        // translate the level to title
         public string ToTitle(EmploymentLevel Emplvl)
         {
             if(Emplvl.ToString() == "A")
@@ -40,12 +42,15 @@ namespace RAP
 
         public override string ToString()
         {
-            return "Level" + "\t" + Level + "\t" + "StartDate" + "\t" + StartDate + "\t" + "EndDate" + "\t" + EndDate + "\t" + "Title" + "\t" + Title;
-        }
-
-        public string Ttile (string Ttile)
-        {
-            return Ttile.ToString();
+            if(DateTime.Compare(EndDate, Convert.ToDateTime("01/01/1900")) == 0)
+            {
+                return "Position Level: " + Level + ", StartDate: " + StartDate.ToString("d") + ", EndDate: Current";
+            }
+            else
+            {
+                return "Position Level: " + Level + ", StartDate: " + StartDate.ToString("d") + ", EndDate: " + EndDate.ToString("d");
+            }
+           
         }
     }
 }

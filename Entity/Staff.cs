@@ -4,23 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RAP
+namespace RAP.Entity
 {
-    class Staff : Researcher
+    public class Staff : Researcher
     {
-        public int PublicationCount3yr()
+        public List<Student> Supervision { get; set; }
+
+        public string Performance { get; set; }
+        public int PublicationCount
         {
-            return Publication.Count(p => p.Year > DateTime.Today.Year - 3);
+            get
+            {
+                return Publication.Count;
+            }
+            
         }
 
-        public float ThreeYearAverage()
+        public float ThreeYearAverage
         {
-            return (PublicationCount3yr()) * 3;
-        }
+            get
+            {
+                return Publication.Count(p => p.Year > DateTime.Today.Year - 3) / 3;
+            }
 
-        public float Performance()
-        {
-            return 0; //PublicationCount3yr() ;
         }
     }
 }

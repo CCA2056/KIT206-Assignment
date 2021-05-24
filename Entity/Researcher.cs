@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RAP
+namespace RAP.Entity
 {
-    class Researcher
+    // this is the class for all the researchers
+    public class Researcher
     {
         public List<Position> Position { get; set; }
         public List<Publication> Publication { get; set; }
@@ -14,38 +15,38 @@ namespace RAP
         public string GivenName { get; set; }
         public string FamilyName { get; set; }
         public string Unit { get; set; }
-        public string Level { get; set; }
-
         public string Title { get; set; }
         public string School { get; set; }
         public string Campus { get; set; }
         public string Email { get; set; }       
         public string Photo { get; set; }
+        public string Degree { get; set; }
+        public EmploymentLevel Level { get; set; }
+        public DateTime EarliestStart { get; set; }
+        public DateTime CurrentJobStartDate { get; set; }
 
-        public Position GetCurrentJob(List<Position> pos)
+
+        // get the current job title from the top of the position list
+        public string CurrentJob
         {
-            Position CurrentJob = pos.First();
-            foreach (Position Job in pos)
+            get
             {
-                if (CurrentJob.StartDate < Job.StartDate)
+                if (Position != null)
                 {
-                    CurrentJob = Job;
+                    return Position[0].Title;
+                }
+                else
+                {
+                    return "";
                 }
             }
-            return CurrentJob;
-
+            set
+            {
+                CurrentJob = Position[0].Title;
+            }
         }
 
-        public string CurrentJobTitle(List<Position> pos)
-        {
-            return GetCurrentJob(pos).Title;
-        }
-
-        public DateTime CurrentJobStartDate(List<Position> pos)
-        {
-            return GetCurrentJob(pos).StartDate;
-        }
-
+        
         public Position GetEarliestJob(List<Position> pos)
         {
             Position EariliestJob;
@@ -61,23 +62,21 @@ namespace RAP
 
         }
 
-        public DateTime EarliestStart(List<Position> pos)
+
+        public float Tenure
         {
-            return GetEarliestJob(pos).StartDate;
+            get
+            {
+                TimeSpan ts = ((DateTime.Now).Subtract(EarliestStart));
+                double day = ts.TotalDays;
+                return (float)day;
+            }
+
         }
 
-        //Need to convert TimeSpan to float
-        public float Tenure(List<Position> pos)
+        public override string ToString()
         {
-            TimeSpan ts = ((DateTime.Now).Subtract(EarliestStart(pos)));
-            double day = ts.TotalDays;
-            return (float)day;
+            return GivenName + " " + FamilyName + " " + Title;
         }
-
-        public int PublicationCount(List<Publication> pub)
-        {
-            return pub.Count;
-        }
-
     }
 }
