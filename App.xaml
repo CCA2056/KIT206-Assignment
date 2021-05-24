@@ -1,0 +1,33 @@
+﻿<Application x:Class="RAP.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:RAP"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <local:ResearcherController x:Key="loadresearcher"/>
+        <ObjectDataProvider x:Key="researcherList"
+                            ObjectInstance="{StaticResource loadresearcher}"
+                            MethodName="GetViewableList">
+        </ObjectDataProvider>
+
+
+
+        <local:Researcher x:Key="level"/>
+        <ObjectDataProvider x:Key="levelValues"
+                            ObjectType="{x:Type sys:Enum}"
+                            MethodName="GetValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:EmploymentLevel"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+        
+        <local:PublicationController x:Key="loadPublication"/>
+        <ObjectDataProvider x:Key="publicationList"
+                            ObjectInstance="{StaticResource loadPublication}"
+                            MethodName="GetViewablePubList">
+        </ObjectDataProvider>
+
+    </Application.Resources>
+</Application>
