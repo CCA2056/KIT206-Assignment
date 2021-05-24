@@ -4,8 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RAP.Entity;
 
-namespace RAP
+namespace RAP.Controller
 {
     public class ResearcherController
     {
@@ -36,6 +37,7 @@ namespace RAP
             LoadPositions();
             loadSupervision();
             loadPublication();
+            PerformCal();
         }
 
 
@@ -51,6 +53,7 @@ namespace RAP
         public void getDetail(Researcher selected)
         {
             researcher = selected;
+        
         }
 
 
@@ -73,7 +76,8 @@ namespace RAP
 
         }
 
-        public void FilterByName(string name) {
+        public void FilterByName(string name)
+        {
 
             var filtered = from Researcher res in researchers
                            where (res.GivenName.Contains(name)) || (res.FamilyName.Contains(name))
@@ -88,11 +92,11 @@ namespace RAP
             var selected = from Researcher s in researchers
                            where s.Level != EmploymentLevel.Student
                            select s;
-            foreach(Staff s in selected)
+            foreach (Staff s in selected)
             {
                 s.Position = DBconnect.getPosition(s);
             }
-           
+
         }
 
         public void getPositionDetail(Position selected)
@@ -144,63 +148,67 @@ namespace RAP
 
 
 
-        /*        public int PublicationCount(Staff r)
+        public int PublicationCount(Staff r)
+        {
+            return r.Publication.Count;
+        }
+
+        public int Count3year(Staff r)
+        {
+            return r.Publication.Count(p => p.Year > DateTime.Today.Year - 3);
+        }
+
+        public float ThreeYearAverage(Staff r)
+        {
+            return (Count3year(r)) / 3;
+        }
+
+
+        public void PerformCal()
+        {
+            float score = 0;
+            var selected = from Researcher r in researchers
+                           where r.Level != EmploymentLevel.Student
+                           select r;
+            foreach(Staff s in selected)
+            {
+                switch (s.Level)
                 {
-                    return r.Publication.Count;
+                    case EmploymentLevel.A:
+                        score = (float)(ThreeYearAverage(s) / 0.5);
+                        
+                        break;
+                    case EmploymentLevel.B:
+                        score = (float)(ThreeYearAverage(s) / 1);
+                        break;
+                    case EmploymentLevel.C:
+                        score = (float)(ThreeYearAverage(s) / 2);
+                        break;
+                    case EmploymentLevel.D:
+                        score = (float)(ThreeYearAverage(s) / 3.2);
+                        break;
+                    case EmploymentLevel.E:
+                        score = (float)(ThreeYearAverage(s) / 4);
+                        break;
                 }
-
-                public int Count3year(Staff r)
+                if (score <= 0.7)
                 {
-                    return r.Publication.Count(p => p.Year > DateTime.Today.Year - 3);
+                    s.Performance = "Poor";
                 }
-
-                public float ThreeYearAverage(Staff r)
+                else if (score < 1.1)
                 {
-                    return (Count3year(r)) / 3;
+                    s.Performance = "Below Expectation";
                 }
-
-
-                public string PerformCal(Staff r)
+                else if (score < 2)
                 {
-                    float score = 0;
-
-                    switch (r.Level)
-                    {
-                        case EmploymentLevel.A:
-                            score = (float)(ThreeYearAverage(r) / 0.5);
-                            break;
-                        case EmploymentLevel.B:
-                            score = (float)(ThreeYearAverage(r) / 1);
-                            break;
-                        case EmploymentLevel.C:
-                            score = (float)(ThreeYearAverage(r) / 2);
-                            break;
-                        case EmploymentLevel.D:
-                            score = (float)(ThreeYearAverage(r) / 3.2);
-                            break;
-                        case EmploymentLevel.E:
-                            score = (float)(ThreeYearAverage(r) / 4);
-                            break;
-                    }
-                    if (score <= 0.7)
-                    {
-                        return "Poor";
-                    }
-                    else if (score < 1.1)
-                    {
-                        return "Below Expectation";
-                    }
-                    else if (score < 2)
-                    {
-                        return "Meeting Minimum";
-                    }
-                    else
-                    {
-                        return "Star Performer";
-                    }
-                }*/
-
-
-
+                    s.Performance = "Meeting Minimum";
+                }
+                else
+                {
+                    s.Performance = "Star Performer";
+                }
+            }
+               
+        }
     }
 }

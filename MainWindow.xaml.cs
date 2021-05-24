@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RAP.Entity;
+using RAP.Controller;
 
 namespace RAP
 {
@@ -23,12 +25,15 @@ namespace RAP
         private const string RESEARCHER_LIST_KEY = "researcherList";
         private const string RESEARCHER_DETAIL_KEY = "researcherDetail";
         private const string POSITION_KEY = "positionList";
+        private const string PUBLICATION_KEY = "publicationList";
         private ResearcherController researcherController;
+        private PublicationController pubCon;
 
         public MainWindow()
         {
             InitializeComponent();
             researcherController = (ResearcherController)(Application.Current.FindResource(RESEARCHER_LIST_KEY) as ObjectDataProvider).ObjectInstance;
+            pubCon = (PublicationController)(Application.Current.FindResource(PUBLICATION_KEY) as ObjectDataProvider).ObjectInstance;
         }
 
         private void SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,10 +64,19 @@ namespace RAP
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Pub_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (e.AddedItems.Count > 0)
+            {
+                Publication selected = e.AddedItems[0] as Publication;
+                pubCon.getPubDetail(selected);
+                pubDetailPanel.DataContext = e.AddedItems[0];
+                //MessageBox.Show(selected.Publication[0].ToString());
+            }
 
         }
+
+
     }
 
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RAP
+namespace RAP.Entity
 {
     public enum PublicationType {Conference, Journal, Other };
     public class Publication
@@ -16,11 +16,12 @@ namespace RAP
         public DateTime Available { get; set; }
         public PublicationType Type { get; set; } 
         public string Cite_as { get; set; }
+        public int Age { get { return getAge(); } set { Age = Age; } }
 
-        public int Age(Publication pub)
+        public int getAge()
         {
             int today = DateTime.Today.Year;
-            int duration = today - pub.Year;
+            int duration = today - Year;
             return duration;
         }
 

@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 using MySql.Data.MySqlClient;
 using MySql.Data.Types;
+using RAP.Entity;
 
 namespace RAP
 {
     abstract class DBconnect
     {
         private static List<Researcher> DBresearchers = new List<Researcher>();
+        private static List<Publication> DBpublications = new List<Publication>();
         private const string db = "kit206";
         private const string user = "kit206";
         private const string pass = "kit206";
@@ -112,7 +114,53 @@ namespace RAP
             DBresearchers = researchers;
             return researchers;
         }
+        public static List<Publication> LoadAllPub()
+        {
+            List<Publication> publications = new List<Publication>();
 
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM publication", conn);
+
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    publications.Add(new Publication
+                    {
+                        DOI = rdr.GetString(0),
+                        Title = rdr.GetString(1),
+                        Authors = rdr.GetString(2),
+                        Year = rdr.GetInt32(3),
+                        Type = ParseEnum<PublicationType>(rdr.GetString(4)),
+                        Cite_as = rdr.GetString(5),
+                        Available = rdr.GetDateTime(6)
+                    });
+                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error connecting to database: " + e);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            DBpublications = publications;
+            return publications;
+        }
         public static string getSupervisor(Student researcher)
         {
             string supervisor = "";
@@ -262,7 +310,7 @@ namespace RAP
                 conn.Open();
 
                 // retrieve the publications of the researcher
-                MySqlCommand cmd = new MySqlCommand("SELECT publication.doi,publication.title,publication.authors,publication.year,publication.type,publication.cite_as,publication.available FROM researcher_publication, publication WHERE publication.doi = researcher_publication.doi AND researcher_publication.researcher_id=" + researcher.ID , conn);
+                MySqlCommand cmd = new MySqlCommand("SELECT publication.doi,publication.title,publication.authors,publication.year,publication.type,publication.cite_as,publication.available FROM researcher_publication, publication WHERE publication.doi = researcher_publication.doi AND researcher_publication.researcher_id=" + researcher.ID + " ORDER BY year DESC, title ASC", conn);
 
                 rdr = cmd.ExecuteReader();
 
@@ -273,10 +321,10 @@ namespace RAP
                         DOI = rdr.GetString(0),
                         Title = rdr.GetString(1),
                         Authors = rdr.GetString(2),
-                        //Year = rdr.GetDateTime(3).Year,
-                        //Type = ParseEnum<PublicationType>(rdr.GetString(4)),
-                        //Cite_as = rdr.GetString(5),
-                        //Available = rdr.GetDateTime(6)
+                        Year = rdr.GetInt32(3),
+                        Type = ParseEnum<PublicationType>(rdr.GetString(4)),
+                        Cite_as = rdr.GetString(5),
+                        Available = rdr.GetDateTime(6)
                     });
 
                 }

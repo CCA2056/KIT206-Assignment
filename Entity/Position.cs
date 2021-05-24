@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RAP
+namespace RAP.Entity
 {
     public enum EmploymentLevel { All, Student, A, B, C, D, E}
     public class Position
